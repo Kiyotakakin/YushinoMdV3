@@ -52,7 +52,7 @@ global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/i!#$%+£¢€¥^°
 global.db = new Low(
   /https?:\/\//.test(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) ?
     new cloudDBAdapter(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) : /mongodb(\+srv)?:\/\//i.test(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) ?
-      (opts['mongodbv2'] ? new mongoDBV2(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) : new mongoDB(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`)) :
+      (opts['mongodbv2'] ? new mongoDBV2(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) : new mongoDB(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`)) 
       )
 
 
