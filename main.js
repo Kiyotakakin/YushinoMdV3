@@ -52,9 +52,9 @@ global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse()
 global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 global.mongosu = `mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`
 global.db = new Low(
-  /https?:\/\//.test(global.mongosu) ?
-    new cloudDBAdapter(global.mongosu) : /mongodb(\+srv)?:\/\//i.test(global.mongosu) ?
-      (opts['mongodbv2'] ? new mongoDBV2(global.mongosu) : new mongoDB(global.mongosu)) :
+  /https?:\/\//.test(opts['db'] || '') ?
+    new cloudDBAdapter(opts['db']) : /mongodb(\+srv)?:\/\//i.test(opts['db']) ?
+      (opts['mongodbv2'] ? new mongoDBV2(opts['db']) : new mongoDB(opts['db'])) :
       new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
 )
 global.DATABASE = global.db // Backwards Compatibility
