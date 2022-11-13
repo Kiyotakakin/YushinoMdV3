@@ -49,7 +49,7 @@ global.timestamp = {
 const __dirname = global.__dirname(import.meta.url)
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
-global.db = new cloudDBAdapter(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) : /mongodb(\+srv)?:\/\//i.test(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) ? new mongoDB(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`))
+global.db = new cloudDBAdapter(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) ? /mongodb(\+srv)?:\/\//i.test(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) : new mongoDB(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`)
 
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
