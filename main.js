@@ -28,6 +28,7 @@ import {
   mongoDBV2
 } from './lib/mongoDB.js'
 import store from './lib/store.js'
+import cloudDBAdapter from './lib/cloudDBAdapter.js'
 
 const {
   useSingleFileAuthState,
