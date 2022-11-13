@@ -50,8 +50,13 @@ global.timestamp = {
 const __dirname = global.__dirname(import.meta.url)
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
-global.db = new cloudDBAdapter(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) ? /mongodb(\+srv)?:\/\//i.test(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`) : new mongoDB(`mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`)
-
+global.mongosu = `mongodb+srv://Kiyotakakin:13082003@cluster0.anpgxcl.mongodb.net/?retryWrites=true&w=majority`
+global.db = new Low(
+  /https?:\/\//.test(global.mongosu) ?
+    new cloudDBAdapter(global.mongosu) : /mongodb(\+srv)?:\/\//i.test(global.mongosu) ?
+      (opts['mongodbv2'] ? new mongoDBV2(global.mongosu) : new mongoDB(global.mongosu)) :
+      new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
+)
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
   if (global.db.READ) return new Promise((resolve) => setInterval(async function () {
